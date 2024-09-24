@@ -118,7 +118,7 @@ Below are some screenshots of the HRMS in action:
 1. **Clone the Repository:**
 
     ```bash
-    git clone https://github.com/yourusername/hrms-project.git
+    git clone https://github.com/jonathanzefanya/human-resource.git
     cd hrms-project
     composer install
     cp .env.example .env
