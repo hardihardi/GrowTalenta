@@ -90,7 +90,7 @@ The HRMS supports the following roles:
 
     ```bash
     git clone https://github.com/jonathanzefanya/human-resource.git
-    cd hrms-project
+    cd human-resource
     composer install
     cp .env.example .env
     php artisan key:generate
