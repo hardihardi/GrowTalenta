@@ -53,35 +53,6 @@ The HRMS supports the following roles:
     - Access personal payroll and attendance information.
     - Participate in training sessions and view job postings.
 
-## Screenshots
-
-Below are some screenshots of the HRMS in action:
-
-### Landing page
-
-![landin gpage](p1.png)
-![landin gpage](p2.png)
-
-### Dashboard
-
-![Dashboard](p3.png)
-
-### Payroll Management
-
-![Payroll Management](p5.png)
-
-### Attendance Tracking
-
-![Attendance Tracking](p4.png)
-
-### Chat Feature
-
-![Chat Feature](p7.png)
-
-### Job Posting
-
-![Chat Feature](p6.png)
-
 ## Technology Stack
 
 -   **Frontend:**
