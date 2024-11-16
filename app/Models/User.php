@@ -4,15 +4,12 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
-
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -20,13 +17,26 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'nama_pegawai',
+        'tempat_lahir',
+        'tanggal_lahir',
+        'jenis_kelamin',
+        'alamat',
+        'tanggal_masuk',
+        'umur',
+        'gaji',
+        'status_pegawai',
+        'google_id',
         'email',
+        'email_verified_at',
         'password',
-        'user_type',
-       'department_name',
-       'profile_picture',
-        
+        'is_admin',
+        'id_jabatan',
+        'provinsi',
+        'kota',
+        'kabupaten',
+        'kecamatan',
+        'kelurahan',
     ];
 
     /**
@@ -40,44 +50,37 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be cast.
+     * Get the attributes that should be cast.
      *
-     * @var array<string, string>
+     * @return array<string, string>
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
-    public function attendances()
+    protected function casts(): array
     {
-        return $this->hasMany(Attendance::class);
+        return [
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
+        ];
     }
 
+    public function penggajian()
+    {
+        return $this->hasMany(Penggajian::class, 'id_user');
+    }
+    public function absensi()
+    {
+        return $this->hasMany(Absensi::class, 'id_user');
+    }
 
-    public function leaves()
+    public function jabatan()
     {
-        return $this->hasMany(Leave::class);
+        return $this->belongsTo(Jabatan::class, 'id_jabatan');
     }
-    public function department()
+    public function cuti()
     {
-        return $this->belongsTo(Department::class, 'department_name', 'name');
+        return $this->hasMany(Cutis::class, 'id_user');
     }
-    public function payrolls()
+    public function berkas()
     {
-        return $this->hasMany(Payroll::class);
+        return $this->hasMany(Berkas::class, 'id_user');
     }
-    public function trainings()
-{
-    return $this->belongsToMany(Training::class);
-}
-
-public function trainingSessions()
-    {
-        return $this->belongsToMany(TrainingSession::class, 'training_user');
-    }
-    public function hasRole($role)
-    {
-        return $this->user_type === $role;
-    }
-    
-    
 }
