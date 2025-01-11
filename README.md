@@ -9,7 +9,7 @@ Grow Talenta Management System (GTMS) adalah sebuah sistem untuk manajemen karya
 ## 📋 Fitur-Fitur
 
 ### Deskripsi
-Berikut adalah fitur-fitur yang tersedia dalam HRMS:
+Berikut adalah fitur-fitur yang tersedia dalam GTMS:
 
 ### Fitur Khusus Admin
 
