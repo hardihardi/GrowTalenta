@@ -5,7 +5,9 @@
             <script>
                 document.write(new Date().getFullYear());
             </script>
-            made with by Jonathan Natannael Zefanya
+            Source Design <i class="fa fa-heart"></i> by
+            <a href="https://www.hardianto.site/" class="font-weight-bold" target="_blank">Hardianto</a>
+            .
         </div>
     </div>
 </footer>

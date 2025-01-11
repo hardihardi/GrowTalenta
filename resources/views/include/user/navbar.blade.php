@@ -13,7 +13,7 @@
         </nav>
 
         <ul class="navbar-nav justify-content-end">
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link" href="{{ route('logout') }}"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <div
@@ -21,7 +21,7 @@
                         <span class="nav-link-text ms-1 text-center">Logout</span>
                     </div>
                 </a>
-            </li>
+            </li> -->
             <li class="nav-item d-xl-none ps-3 pe-0 d-flex align-items-center">
                 <a href="javascript:void(0);" class="nav-link text-white p-0" id="iconNavbarSidenav">
                     <div class="sidenav-toggler-inner">

@@ -171,6 +171,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const apiBaseUrl = 'https://www.emsifa.com/api-wilayah-indonesia/api';
+            // const apiBaseUrl = 'https://wilayah.id/api';
 
             const provinsiSelect = document.getElementById('provinsi');
             const kabupatenSelect = document.getElementById('kabupaten');

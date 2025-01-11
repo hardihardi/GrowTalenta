@@ -101,11 +101,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', isAdmin::class]], fu
     Route::put('/cuti/confirm/{id}', [CutisController::class, 'confirm'])->name('cuti.confirm');
     Route::delete('cuti/{id}', [CutisController::class, 'destroy'])->name('cuti.destroy');
     Route::put('/cuti/approve/{id}', [CutisController::class, 'approve'])->name('cuti.approve');
+    Route::put('/cuti/reject/{id}', [CutisController::class, 'reject'])->name('cuti.reject');
 
     
 
     //Route berkas
-    // Route::resource('berkas', BerkasController::class);
+    Route::resource('berkas', BerkasController::class);
     Route::get('berkas', [BerkasController::class, 'index'])->name('berkas.index');
     Route::get('berkas/create', [BerkasController::class, 'create'])->name('berkas.create');
     Route::post('berkas', [BerkasController::class, 'store'])->name('berkas.store');
@@ -113,6 +114,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', isAdmin::class]], fu
     Route::get('berkas/{id}/edit', [BerkasController::class, 'edit'])->name('berkas.edit');
     Route::put('berkas/{id}', [BerkasController::class, 'update'])->name('berkas.update');
     Route::delete('berkas/{id}', [BerkasController::class, 'destroy'])->name('berkas.destroy');
+    Route::get('/berkas/view/{type}/{id}', [BerkasController::class, 'viewFile'])->name('berkas.view');
+
 
     //Route laporan
     Route::get('laporan/pegawai', [LaporanController::class, 'pegawai'])->name('laporan.pegawai');

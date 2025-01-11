@@ -99,7 +99,7 @@
                                     $no = 1;
                                 @endphp
                                 @foreach ($cuti as $item)
-                                    @if ($item->pegawai->is_admin == 0)
+                                    @if ($item->pegawai->is_admin == 0 && $item->status_cuti == 1)
                                         <tr>
                                             <td>{{ $no++ }}</td>
                                             <td>{{ $item->pegawai->nama_pegawai }}</td>

@@ -5,9 +5,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('user/assets/img/apple-icon.png') }}">
-    <link rel="icon" type="image/png" href="{{ asset('user/assets/img/favicon.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('https://iili.io/2rOi5VR.th.png') }}">
     <title>
-        Argon Dashboard 2 by Creative Tim
+        Karyawan Dashboard
     </title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -25,7 +25,7 @@
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js'></script>
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    
+
     <style>
         .bg-primary {
             background-color: #0d6efd !important;
@@ -33,6 +33,19 @@
 
         .text-white {
             color: #ffffff !important;
+        }
+        .dark-mode {
+            background-color: #1a202c;
+            color: #ffffff;
+        }
+
+        .dark-mode .card {
+            background-color: #2d3748;
+            color: #ffffff;
+        }
+
+        .dark-mode .navbar {
+            background-color: #2d3748;
         }
     </style>
 
@@ -107,6 +120,9 @@
                         <input class="form-check-input mt-1 ms-auto" type="checkbox" id="dark-version"
                             onclick="darkMode(this)">
                     </div>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-primary" onclick="saveTheme()">Save Theme</button>
                 </div>
             </div>
         </div>
@@ -282,6 +298,41 @@
 
         // Render kalender awal
         renderCalendar(currentDate);
+
+         // Fungsi untuk mengaktifkan mode gelap atau terang
+        function toggleDarkMode(isDark) {
+            const body = document.body;
+            if (isDark) {
+                body.classList.add('dark-mode');
+            } else {
+                body.classList.remove('dark-mode');
+            }
+        }
+
+        // Fungsi untuk menyimpan tema ke localStorage
+        function saveTheme() {
+            const isDark = document.getElementById('dark-version').checked;
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            alert('Theme has been saved!');
+        }
+
+        // Fungsi untuk menerapkan tema yang tersimpan
+        function applySavedTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                const isDark = savedTheme === 'dark';
+                document.getElementById('dark-version').checked = isDark;
+                toggleDarkMode(isDark);
+            }
+        }
+
+        // Event listener untuk perubahan pada toggle switch
+        document.getElementById('dark-version').addEventListener('change', function () {
+            toggleDarkMode(this.checked);
+        });
+
+        // Terapkan tema saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', applySavedTheme);
     </script>
 </body>
 

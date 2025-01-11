@@ -17,7 +17,8 @@ class AdminSeeder extends Seeder
             'nama_pegawai' => 'Admin',
             'google_id' => null,
             'email' => 'admin@gmail.com',
-            'password' => Hash::make('12345678'),
+            // 'password' => Hash::make('12345678'),
+            'password' => Hash::make('password'),
             'is_admin' => 1,
             'status_pegawai' => 1,
         ]);

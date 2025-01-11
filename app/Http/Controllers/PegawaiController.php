@@ -17,7 +17,7 @@ class PegawaiController extends Controller
      */
     public function index()
     {
-        $responseProvinsi = Http::get('https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json');
+        $responseProvinsi = Http::get('https://emsifa.github.io/api-wilayah-indonesia/api/provinces.json');
         $provinsis = $responseProvinsi->json(); // Mengubah response menjadi array
 
         $pegawai = User::where('is_admin', 0)->get()->map(function ($pegawai) use ($provinsis) {
@@ -28,7 +28,7 @@ class PegawaiController extends Controller
             $pegawai->nama_provinsi = $provinsi ? $provinsi['name'] : 'Provinsi tidak ditemukan';
 
             // Mengambil data kota berdasarkan ID provinsi
-            $responseKota = Http::get("https://emsifa.github.io/api-wilayah-indonesia/api/regencies/{$pegawai->provinsi}.json");
+            $responseKota = Http::get("https://www.emsifa.com/api-wilayah-indonesia/api/regencies/{$pegawai->provinsi}.json");
             $kotas = $responseKota->json(); // Mengubah response menjadi array
 
             // Mencari nama kota berdasarkan ID kota pegawai
@@ -36,7 +36,7 @@ class PegawaiController extends Controller
             $pegawai->nama_kota = $kota ? $kota['name'] : 'Kota tidak ditemukan';
 
             // Mengambil data kecamatan berdasarkan ID kabupaten
-            $responseKecamatan = Http::get("https://emsifa.github.io/api-wilayah-indonesia/api/districts/{$pegawai->kabupaten}.json");
+            $responseKecamatan = Http::get("https://www.emsifa.com/api-wilayah-indonesia/api/districts/{$pegawai->kabupaten}.json");
             $kecamatans = $responseKecamatan->json(); // Mengubah response menjadi array
 
             // Mencari nama kecamatan berdasarkan ID kecamatan pegawai
@@ -44,7 +44,7 @@ class PegawaiController extends Controller
             $pegawai->nama_kecamatan = $kecamatan ? $kecamatan['name'] : 'Kecamatan tidak ditemukan';
 
             // Mengambil data kecamatan berdasarkan ID kabupaten
-            $responseKelurahan = Http::get("https://emsifa.github.io/api-wilayah-indonesia/api/villages/{$pegawai->kecamatan}.json");
+            $responseKelurahan = Http::get("https://www.emsifa.com/api-wilayah-indonesia/api/villages/{$pegawai->kecamatan}.json");
             $kelurahans = $responseKelurahan->json(); // Mengubah response menjadi array
 
             // Mencari nama kecamatan berdasarkan ID kecamatan pegawai

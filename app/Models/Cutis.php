@@ -14,6 +14,7 @@ class Cutis extends Model
         'tanggal_mulai',
         'tanggal_selesai',
         'alasan',
+        'status_cuti', // Menambahkan status cuti
     ];
 
     public $timestamp = true;

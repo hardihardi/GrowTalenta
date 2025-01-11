@@ -52,6 +52,9 @@
                                                 @if ($item->status_cuti == 1)
                                                     <span class="badge bg-info text-dark" style="font-weight: bold;">—
                                                         Diterima —</span>
+                                                @elseif ($item->status_cuti == 2)
+                                                    <span class="badge bg-danger text-white" style="font-weight: bold;">—
+                                                        Ditolak —</span>
                                                 @else
                                                     <span class="badge bg-dark text-white" style="font-weight: bold;">—
                                                         Menunggu Konfirmasi —</span>

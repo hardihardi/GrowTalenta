@@ -110,66 +110,82 @@
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
-                        @foreach ($berkas as $data)
+                        @if ($berkas->isEmpty())
                             <tr>
-                                <td>{{ $loop->index + 1 }}</td>
-                                <td>{{ $data->pegawai->nama_pegawai }}</td>
-                                <td>
-                                    <a href="javascript:void(0)" class="btn rounded-pill btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#viewCVModal{{ $data->id }}"
-                                        style="padding-left: 20px; padding-right: 20px; padding-top: 7px; padding-bottom: 7px">
-                                        <i class="bx bx-search-alt" data-bs-toggle="tooltip" data-bs-offset="0,4"
-                                            data-bs-placement="left" data-bs-html="true" title="Lihat CV"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="javascript:void(0)" class="btn rounded-pill btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#viewKKModal{{ $data->id }}"
-                                        style="padding-left: 20px; padding-right: 20px; padding-top: 7px; padding-bottom: 7px">
-                                        <i class="bx bx-search-alt" data-bs-toggle="tooltip" data-bs-offset="0,4"
-                                            data-bs-placement="left" data-bs-html="true" title="Lihat KK"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="javascript:void(0)" class="btn rounded-pill btn-primary"
-                                        data-bs-toggle="modal" data-bs-target="#viewKTPModal{{ $data->id }}"
-                                        style="padding-left: 20px; padding-right: 20px; padding-top: 7px; padding-bottom: 7px">
-                                        <i class="bx bx-search-alt" data-bs-toggle="tooltip" data-bs-offset="0,4"
-                                            data-bs-placement="left" data-bs-html="true" title="Lihat KTP"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="javascript:void(0)" class="btn rounded-pill btn-primary"
-                                        data-bs-toggle="modal" data-bs-target="#viewAKTEModal{{ $data->id }}"
-                                        style="padding-left: 20px; padding-right: 20px; padding-top: 7px; padding-bottom: 7px">
-                                        <i class="bx bx-search-alt" data-bs-toggle="tooltip" data-bs-offset="0,4"
-                                            data-bs-placement="left" data-bs-html="true" title="Lihat AKTE"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <form action="{{ route('berkas.destroy', $data->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <div class="dropdown">
-                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                data-bs-toggle="dropdown">
-                                                <i class="bx bx-dots-vertical-rounded"></i>
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="{{ route('berkas.edit', $data->id) }}"><i
-                                                        class="bx bx-edit-alt me-1"></i> Edit</a>
-                                                <a href="{{ route('berkas.destroy', $data->id) }}" type="submit"
-                                                    class="dropdown-item" data-confirm-delete="true"><i
-                                                        class="bx bx-trash me-1"></i>
-                                                    Delete</a>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </td>
+                                <td colspan="7" class="text-center">Data tidak ditemukan</td>
                             </tr>
+                        @else
+                            @foreach ($berkas as $data)
+                                <tr>
+                                    <td>{{ $loop->index + 1 }}</td>
+                                    <td>{{ $data->pegawai->nama_pegawai }}</td>
+                                    <td>
+                                        <a href="javascript:void(0)" class="btn rounded-pill btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#viewCVModal{{ $data->id }}"
+                                            style="padding-left: 20px; padding-right: 20px; padding-top: 7px; padding-bottom: 7px">
+                                            <i class="bx bx-search-alt" data-bs-toggle="tooltip" data-bs-offset="0,4"
+                                                data-bs-placement="left" data-bs-html="true" title="Lihat CV"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="javascript:void(0)" class="btn rounded-pill btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#viewKKModal{{ $data->id }}"
+                                            style="padding-left: 20px; padding-right: 20px; padding-top: 7px; padding-bottom: 7px">
+                                            <i class="bx bx-search-alt" data-bs-toggle="tooltip" data-bs-offset="0,4"
+                                                data-bs-placement="left" data-bs-html="true" title="Lihat KK"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="javascript:void(0)" class="btn rounded-pill btn-primary"
+                                            data-bs-toggle="modal" data-bs-target="#viewKTPModal{{ $data->id }}"
+                                            style="padding-left: 20px; padding-right: 20px; padding-top: 7px; padding-bottom: 7px">
+                                            <i class="bx bx-search-alt" data-bs-toggle="tooltip" data-bs-offset="0,4"
+                                                data-bs-placement="left" data-bs-html="true" title="Lihat KTP"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="javascript:void(0)" class="btn rounded-pill btn-primary"
+                                            data-bs-toggle="modal" data-bs-target="#viewAKTEModal{{ $data->id }}"
+                                            style="padding-left: 20px; padding-right: 20px; padding-top: 7px; padding-bottom: 7px">
+                                            <i class="bx bx-search-alt" data-bs-toggle="tooltip" data-bs-offset="0,4"
+                                                data-bs-placement="left" data-bs-html="true" title="Lihat AKTE"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-warning" href="{{ route('berkas.edit', $data->id) }}">Edit</a>
+                                        <button class="btn btn-danger btn-delete" data-id="{{ $data->id }}">Delete</button>
+                                        <form id="delete-form-{{ $data->id }}" action="{{ route('berkas.destroy', $data->id) }}" method="POST" style="display: none;">
+                                            @csrf
+                                            @method('DELETE')
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
 
+                            <!-- Modal Konfirmasi Hapus -->
+                            <div class="modal fade" id="deleteModal{{ $data->id }}" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Konfirmasi Hapus</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Apakah Anda yakin ingin menghapus berkas ini?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <form action="{{ route('berkas.destroy', $data->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Hapus</button>
+                                            </form>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-                            <!-- Modal Lihat CV -->
+                            <!-- Modal View CV -->
                             <div class="modal fade" id="viewCVModal{{ $data->id }}" tabindex="-1"
                                 aria-hidden="true" data-bs-backdrop="static">
                                 <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -264,7 +280,7 @@
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
+                        @endif
                     </tbody>
                 </table>
             </div>
@@ -297,24 +313,24 @@
                         </div>
                         <div class="row mt-3">
                             <div class="col mb-0 mt-3">
-                                <label for="nameBasic" class="form-label">Masukan CV Anda</label>
+                                <label for="nameBasic" class="form-label">Masukan CV (PDF)</label>
                                 <input type="file" class="form-control" name="cv" required
                                     accept="application/pdf">
                             </div>
                             <div class="col mb-0 mt-3">
-                                <label for="nameBasic" class="form-label">Masukan KK Anda</label>
+                                <label for="nameBasic" class="form-label">Masukan KK (PDF)</label>
                                 <input type="file" class="form-control" name="kk" required
                                     accept="application/pdf">
                             </div>
                         </div>
                         <div class="row mt-3">
                             <div class="col mb-0 mt-3">
-                                <label for="nameBasic" class="form-label">Masukan KTP Anda</label>
+                                <label for="nameBasic" class="form-label">Masukan KTP (PDF)</label>
                                 <input type="file" class="form-control" name="ktp" required
                                     accept="application/pdf">
                             </div>
                             <div class="col mb-0 mt-3">
-                                <label for="nameBasic" class="form-label">Masukan AKTE Anda</label>
+                                <label for="nameBasic" class="form-label">Masukan AKTE (PDF)</label>
                                 <input type="file" class="form-control" name="akte" required
                                     accept="application/pdf">
                             </div>
@@ -328,4 +344,33 @@
             </div>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const deleteButtons = document.querySelectorAll('.btn-delete');
+            
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const dataId = this.getAttribute('data-id');
+                    
+                    Swal.fire({
+                        title: 'Apakah Anda yakin?',
+                        text: "Data ini akan dihapus secara permanen!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#d33',
+                        cancelButtonColor: '#3085d6',
+                        confirmButtonText: 'Ya, hapus!',
+                        cancelButtonText: 'Batal'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            document.getElementById(`delete-form-${dataId}`).submit();
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+
 @endsection

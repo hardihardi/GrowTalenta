@@ -127,6 +127,8 @@
                                 <td>
                                     @if ($data->status_cuti == 1)
                                         <span class="badge bg-label-info">— Diterima —</span>
+                                    @elseif ($data->status_cuti == 2)
+                                        <span class="badge bg-label-danger">— Ditolak —</span>
                                     @else
                                         <span class="badge bg-label-dark">— Menunggu Konfirmasi —</span>
                                     @endif

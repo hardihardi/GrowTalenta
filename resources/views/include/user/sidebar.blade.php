@@ -1,4 +1,23 @@
 <style>
+    aside#sidenav-main {
+        height: 100vh;
+        /* Menyesuaikan tinggi dengan layar */
+        overflow-y: auto;
+        /* Menambahkan scroll jika kontennya panjang */
+        position: fixed;
+        /* Memastikan navbar tetap berada di sisi kiri */
+        top: 0;
+        /* Mulai dari atas layar */
+        left: 0;
+        /* Mulai dari sisi kiri layar */
+        width: 250px;
+        /* Atur lebar sidebar sesuai kebutuhan */
+        background-color: #fff;
+        /* Warna background */
+        z-index: 1030;
+        /* Menyesuaikan posisi dengan elemen lainnya */
+    }
+
     .nav-item.active .nav-link {
         background-color: #f5f5f5;
         color: #5e72e4;
@@ -21,13 +40,13 @@
     <div class="sidenav-header">
         <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
             aria-hidden="true" id="iconSidenav"></i>
-        <a class="navbar-brand m-0" href="{{ url('user/dashboard') }}" target="_blank">
-            <img src="{{ asset('user/assets/img/logo-ct-dark.png') }}" class="navbar-brand-img h-100" alt="main_logo">
-            <span class="ms-1 font-weight-bold">human resource</span>
+        <a class="navbar-brand m-0" href="#" target="_blank">
+            <img src={{ asset('admin/assets/img/logo/logo.png') }} alt="Logo" class="app-brand-logo"
+                style="max-width: 100%; height: auto;">
         </a>
     </div>
     <hr class="horizontal dark mt-0">
-    <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
+    <div class="collapse navbar-collapse w-auto " id="sidenav-collapse-main" style="min-height: 100%;">
         <ul class="navbar-nav">
             <!-- Dashboard Menu -->
             <li class="nav-item {{ request()->is('user/dashboard') ? 'active' : '' }}">
@@ -120,7 +139,16 @@
             </li>
 
             <!-- Logout Menu -->
-
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-button-power text-danger text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Logout</span>
+                </a>
+            </li>
         </ul>
     </div>
 

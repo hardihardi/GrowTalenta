@@ -99,55 +99,60 @@
 
             <!-- Table for cuti menu Data -->
             <div class="table-responsive text-nowrap">
-                <table class="table table-bordered2w">
+            <table class="table table-bordered2w">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Pegawai</th>
+                        <th>Total Cuti</th>
+                        <th>Alasan</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                    @foreach ($cuti as $data)
                         <tr>
-                            <th>No</th>
-                            <th>Nama Pegawai</th>
-                            <th>Total Cuti</th>
-                            <th>Alasan</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody class="table-border-bottom-0">
-                        @foreach ($cuti as $data)
-                            <tr>
-                                <td>{{ $loop->index + 1 }}</td>
-                                <td>{{ $data->pegawai->nama_pegawai }}</td>
-                                <td>{{ $data->total_hari_cuti }} Hari</td>
-                                <td>{{ $data->alasan }}</td>
-                                <td>
-                                    <!-- Status badge -->
-                                    
-                                </td>
-                                <td>
-                                    @if ($data->status_cuti == 1)
-                                        <!-- Display a disabled button for confirmed requests -->
-                                        <button type="button" class="btn rounded-pill btn-secondary" disabled>
-                                            Sudah Dikonfirmasi
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $data->pegawai->nama_pegawai }}</td>
+                            <td>{{ $data->total_hari_cuti }} Hari</td>
+                            <td>{{ $data->alasan }}</td>
+                            <td>
+                                @if ($data->status_cuti == 1)
+                                    <button type="button" class="btn rounded-pill btn-secondary" disabled>
+                                        Sudah Dikonfirmasi
+                                    </button>
+                                @elseif ($data->status_cuti == 2)
+                                    <button type="button" class="btn rounded-pill btn-danger" disabled>
+                                        Ditolak
+                                    </button>
+                                @else
+                                    <!-- <form action="{{ route('cuti.confirm', $data->id) }}" method="POST" style="display: inline;">
+                                        @csrf
+                                        @method('PUT')
+                                        <button class="btn rounded-pill btn-danger mx-1" type="submit">
+                                            <i class="bi bi-x-circle-fill" title="Tolak"></i>
                                         </button>
-                                    @else
-                                        <!-- Action buttons for pending confirmation -->
-                                        <form action="{{ route('cuti.confirm', $data->id) }}" method="POST" style="display: inline;">
-                                            @csrf
-                                            @method('PUT')
-                                            <button class="btn rounded-pill btn-danger mx-1" type="submit">
-                                                <i class="bi bi-x-circle-fill" title="Tolak"></i>
-                                            </button>
-                                        </form>
-                                        <form action="{{ route('cuti.approve', $data->id) }}" method="POST" style="display: inline;">
-                                            @csrf
-                                            @method('PUT')
-                                            <button class="btn rounded-pill btn-success mx-1" type="submit">
-                                                <i class="bi bi-check-circle-fill" title="Terima"></i>
-                                            </button>
-                                        </form>
-                                    @endif
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                    
-                </table>
+                                    </form> -->
+                                    <form action="{{ route('cuti.reject', $data->id) }}" method="POST" style="display: inline;">
+                                        @csrf
+                                        @method('PUT')
+                                        <button class="btn rounded-pill btn-danger mx-1" type="submit">
+                                            <i class="bi bi-x-circle-fill" title="Tolak"></i>
+                                        </button>
+                                    </form>
+                                    <form action="{{ route('cuti.approve', $data->id) }}" method="POST" style="display: inline;">
+                                        @csrf
+                                        @method('PUT')
+                                        <button class="btn rounded-pill btn-success mx-1" type="submit">
+                                            <i class="bi bi-check-circle-fill" title="Terima"></i>
+                                        </button>
+                                    </form>
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
             </div>
         </div>
     </div>

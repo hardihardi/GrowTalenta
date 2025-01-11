@@ -1,6 +1,7 @@
 @extends('layouts.admin.template')
 @section('css')
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 @endsection
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
@@ -201,7 +202,46 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.js"></script>
+    <script>
+        let fieldCount = 0;
+        // Fungsi untuk menambahkan field baru
+        function addField() {
+            fieldCount++;
 
+            const additionalFields = document.getElementById('additionalFields');
+
+            const fieldContainer = document.createElement('div');
+            fieldContainer.setAttribute('id', `fieldContainer-${fieldCount}`);
+            fieldContainer.className = 'd-flex align-items-center mb-3';
+
+            const inputField = document.createElement('input');
+            inputField.type = 'text';
+            inputField.name = `additional_fields[]`; // Gunakan array untuk multiple inputs
+            inputField.className = 'form-control me-2';
+            inputField.placeholder = `Enter Jabatan ${fieldCount}`;
+            inputField.required = true;
+
+            const deleteButton = document.createElement('button');
+            deleteButton.type = 'button';
+            deleteButton.className = 'btn btn-danger';
+            deleteButton.innerHTML = '<i class="bi bi-trash"></i>'; // Icon Sampah
+            deleteButton.onclick = function () {
+                removeField(fieldCount);
+            };
+
+            fieldContainer.appendChild(inputField);
+            fieldContainer.appendChild(deleteButton);
+            additionalFields.appendChild(fieldContainer);
+        }
+
+        // Fungsi untuk menghapus field tertentu
+        function removeField(id) {
+            const fieldContainer = document.getElementById(`fieldContainer-${id}`);
+            if (fieldContainer) {
+                fieldContainer.remove();
+            }
+        }
+    </script>
     <script>
         new DataTable('#example')
     </script>

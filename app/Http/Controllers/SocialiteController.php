@@ -15,7 +15,7 @@ class SocialiteController extends Controller
 
     public function callback()
     {
-        $userFromGoogle = Socialite::driver('google')->stateless()->user();
+        $userFromGoogle = Socialite::driver('google')->user();
 
         $userFromDb = User::where('google_id', $userFromGoogle->getId())->first();
 
@@ -23,18 +23,19 @@ class SocialiteController extends Controller
             $userFromDb = new User();
             $userFromDb->email = $userFromGoogle->getEmail();
             $userFromDb->google_id = $userFromGoogle->getId();
-            $userFromDb->name = $userFromGoogle->getName();
+            $userFromDb->nama_pegawai = $userFromGoogle->getName();
+            
 
             $userFromDb->save();
 
             auth('web')->login($userFromDb);
             session()->regenerate();
-            return redirect('/');
+            return redirect('/user/dashboard');
         }
 
         auth('web')->login($userFromDb);
         session()->regenerate();
-        return redirect('/');
+        return redirect('/user/dashboard');
     }
 
     public function logout(Request $request)

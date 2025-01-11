@@ -115,7 +115,7 @@
                                     <th>Umur</th>
                                     <th>Email</th>
                                     <th>Gaji</th>
-                                    <th>Di Tempatkan</th>
+                                    <!-- <th>Di Tempatkan</th> -->
                                 </tr>
                             </thead>
                             <tbody>
@@ -134,9 +134,15 @@
                                             <td>{{ $item->umur }}</td>
                                             <td>{{ $item->email }}</td>
                                             <td>{{ 'Rp ' . number_format($item->gaji, 0, ',', '.') }}</td>
-                                            <td>
-                                                {{ $item->nama_provinsi . ', ' . $item->nama_kota . ', ' . $item->nama_kecamatan . ', ' . $item->nama_kelurahan }}
-                                            </td>
+                                            
+                                            <!-- <td> -->
+                                                <!-- {{ $item->nama_provinsi . ', ' . $item->nama_kota . ', ' . $item->nama_kecamatan . ', ' . $item->nama_kelurahan }} -->
+                                                <!-- {{ $item->nama_provinsi ?? 'Provinsi tidak diketahui' }}, -->
+                                                <!-- {{ $item->nama_kota ?? 'Kota tidak diketahui' }}, -->
+                                                <!-- {{ $item->nama_kecamatan ?? 'Kecamatan tidak diketahui' }}, -->
+                                                <!-- {{ $item->nama_kelurahan ?? 'Kelurahan tidak diketahui' }} -->
+                                            <!-- </td> -->
+
                                         </tr>
                                     @endif
                                 @endforeach

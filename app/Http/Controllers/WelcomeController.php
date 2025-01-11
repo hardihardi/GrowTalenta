@@ -76,7 +76,7 @@ class WelcomeController extends Controller
 
         // Check for lateness
         $note = null;
-        $latenessTime = Carbon::createFromTime(8, 0, 0, 'Asia/Jakarta');
+        $latenessTime = Carbon::createFromTime(12, 0, 0, 'Asia/Jakarta');
         if ($currentTime->greaterThan($latenessTime)) {
             $note = 'Telat';
         }
@@ -191,7 +191,7 @@ class WelcomeController extends Controller
         }
 
         // Check if it's the correct time to perform check-out
-        if ($currentTime->between(Carbon::createFromTime(15, 0, 0), Carbon::createFromTime(16, 0, 0))) {
+        if ($currentTime->between(Carbon::createFromTime(15, 0, 0), Carbon::createFromTime(1, 0, 0))) {
             // Update only if `jam_keluar` is not already set
             if (is_null($absensi->jam_keluar)) {
                 $absensi->jam_keluar = $currentTime->toTimeString();

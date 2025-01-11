@@ -7,13 +7,13 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Human Resource</title>
+    <title>GrowTalenta</title>
 
     <meta name="description" content="" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon"
-        href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIoMmTAmRH0abn7f5jb2sQvX8SOLsN2cCZ2A&s"
+        href="https://iili.io/2rOi5VR.th.png"
         class="rounded-circle" />
 
     <!-- Fonts -->
@@ -97,7 +97,7 @@
                                                     <b>{{ Auth::user()->nama_pegawai }}</b> 🎉
                                                 </h5>
                                                 <p class="mb-4">
-                                                    Ini Adalah Halaman Utama <span class="fw-bold">Human Resource.</span>
+                                                    Ini Adalah Halaman Utama <span class="fw-bold">Grow Talenta Management System.</span>
                                                     <br>
                                                     Silahkan Cek Menu Menu Disini Untuk Melihat Informasi Yang Tersedia.
                                                 </p>
@@ -116,7 +116,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-4 order-1">
+                            <!-- <div class="col-lg-4 col-md-4 order-1">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-12 col-6 mb-4">
                                         <div class="card">
@@ -159,6 +159,53 @@
                                                 </h3>
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+
+                        <!-- Di bawah ini adalah konten untuk pegawai dan gaji -->
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-6 mb-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="card-title d-flex align-items-start justify-content-between">
+                                            <div class="avatar flex-shrink-0">
+                                                <small class="text-warning fw-semibold">
+                                                    <i class='bx bxs-user-circle' style="font-size: 50px"></i>
+                                                </small>
+                                            </div>
+                                        </div>
+                                        <span>Pegawai</span>
+                                        <div class="row pt-2">
+                                            <div class="col">
+                                                <h3 class="card-title text-nowrap">
+                                                    {{ $totalPegawai }}
+                                                </h3>
+                                            </div>
+                                        </div>
+                                        <div class="mt-3">
+                                            <a href="{{ route('pegawai.index') }}" class="btn btn-primary btn-sm">
+                                                Lihat
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-6 mb-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="card-title d-flex align-items-start justify-content-between">
+                                            <div class="avatar flex-shrink-0">
+                                                <small class="text-primary fw-semibold">
+                                                    <i class='bx bxs-wallet' style="font-size: 50px"></i>
+                                                </small>
+                                            </div>
+                                        </div>
+                                        <span>Gaji Keseluruhan</span>
+                                        <h3 class="card-title text-nowrap mb-1 mt-3">
+                                            Rp. {{ number_format($totalPenggajian, 0, ',', '.') }}
+                                        </h3>
                                     </div>
                                 </div>
                             </div>
@@ -255,10 +302,10 @@
         new Chart(ctx1, {
             type: 'bar',
             data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                labels: ['January', 'February', 'March', 'April', 'May', 'June'],
                 datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
+                    label: 'Pengeluaran (Dalam bentuk juta)',
+                    data: [30, 24, 15, 25, 18, 32],
                     borderWidth: 1
                 }]
             },
@@ -278,8 +325,8 @@
             data: {
                 labels: ['January', 'February', 'March', 'April', 'May', 'June'],
                 datasets: [{
-                    label: '# of Sales',
-                    data: [5, 10, 15, 20, 25, 30],
+                    label: 'Pemasukan (Dalam bentuk juta)',
+                    data: [28, 30, 33, 25, 28, 30],
                     borderWidth: 1
                 }]
             },

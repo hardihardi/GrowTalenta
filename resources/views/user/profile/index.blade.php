@@ -65,7 +65,9 @@
                         </div>
                         <div class="col-md-3 mb-3">
                             <p class="mb-0 font-weight-bold text-dark">Umur</p>
-                            <p class="text-muted">{{ Auth::user()->umur }}</p>
+                            <p class="text-muted">
+                                {{ \Carbon\Carbon::parse(Auth::user()->tanggal_lahir)->age }} tahun
+                            </p>
                         </div>
                         <div class="col-md-3 mb-3">
                             <p class="mb-0 font-weight-bold text-dark">Gaji</p>

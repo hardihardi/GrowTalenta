@@ -5,8 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Login</title>
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <!-- icon -->
+    <link rel="icon" type="image/png" href="https://iili.io/2rOi5VR.th.png" />
 
     <style>
         /* Google Fonts - Poppins */
@@ -19,38 +21,45 @@
             font-family: 'Poppins', sans-serif;
         }
 
-        .container {
+        body {
             height: 100vh;
-            width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: #4070f4;
-            column-gap: 30px;
+            overflow: hidden;
+            position: relative;
         }
 
-        .form {
-            position: absolute;
-            max-width: 430px;
+        .video-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .video-bg video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .container {
+            position: absolute;
+            z-index: 1;
+            width: 100%;
+            max-width: 430px;
             padding: 30px;
             border-radius: 6px;
-            background: #FFF;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            cursor: grab;
         }
 
-        .form.signup {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .forms.show-signup .form.signup {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .forms.show-signup .form.login {
-            opacity: 0;
-            pointer-events: none;
+        .container:active {
+            cursor: grabbing;
         }
 
         header {
@@ -64,7 +73,7 @@
             margin-top: 30px;
         }
 
-        .form .field {
+        .field {
             position: relative;
             height: 50px;
             width: 100%;
@@ -85,7 +94,7 @@
         .field input {
             outline: none;
             padding: 0 15px;
-            border: 1px solid#CACACA;
+            border: 1px solid #CACACA;
         }
 
         .field input:focus {
@@ -184,7 +193,7 @@
         }
 
         @media screen and (max-width: 400px) {
-            .form {
+            .container {
                 padding: 20px 10px;
             }
 
@@ -193,40 +202,41 @@
 </head>
 
 <body>
-    <section class="container forms">
+    <div class="video-bg">
+        <video src="/videos/grow.mp4" autoplay muted loop style="background-color: gray;"></video>
+    </div>
+
+    <section class="container forms" id="draggable">
         <div class="form login">
             <div class="form-content">
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
+                    <img src={{ asset('admin/assets/img/logo/logo.png') }} alt="Logo" class="app-brand-logo" style="max-width: 100%; height: auto;">
                     <header>Login</header>
-                    <form action="#">
-                        <div class="field input-field">
-                            <input id="email" type="email"
-                                class="form-control @error('email') is-invalid @enderror" name="email"
-                                value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Email">
-                            @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
+                    <div class="field input-field">
+                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email"
+                            value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Email">
+                        @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
 
-                        <div class="field input-field">
-                            <input id="password" type="password"
-                                class="form-control @error('password') is-invalid @enderror" name="password" required
-                                autocomplete="current-password" placeholder="Password">
-                            @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                            <i class='bx bx-hide eye-icon' id="togglePassword"></i>
-                        </div>
+                    <div class="field input-field">
+                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required
+                            autocomplete="current-password" placeholder="Password">
+                        @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                        <i class='bx bx-hide eye-icon' id="togglePassword"></i>
+                    </div>
 
-                        <div class="field button-field">
-                            <button type="submit">Login</button>
-                        </div>
-                    </form>
+                    <div class="field button-field">
+                        <button type="submit">Login</button>
+                    </div>
                 </form>
             </div>
 
@@ -245,7 +255,7 @@
         const togglePassword = document.querySelector("#togglePassword");
         const password = document.querySelector("#password");
 
-        togglePassword.addEventListener("click", function() {
+        togglePassword.addEventListener("click", function () {
             // Toggle the type attribute
             const type = password.getAttribute("type") === "password" ? "text" : "password";
             password.setAttribute("type", type);
@@ -254,6 +264,56 @@
             this.classList.toggle('bx-hide');
             this.classList.toggle('bx-show');
         });
+
+        const draggable = document.getElementById('draggable');
+        let isDragging = false;
+        let offsetX, offsetY;
+
+        draggable.addEventListener('mousedown', (e) => {
+            if (e.button === 2) { // Left mouse button
+                isDragging = true;
+                offsetX = e.clientX - draggable.offsetLeft;
+                offsetY = e.clientY - draggable.offsetTop;
+                draggable.style.position = 'absolute';
+            }
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                draggable.style.left = `${e.clientX - offsetX}px`;
+                draggable.style.top = `${e.clientY - offsetY}px`;
+            }
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+
+        // Touch events for mobile
+        draggable.addEventListener('touchstart', (e) => {
+            if (e.touches.length === 1) {
+                isDragging = true;
+                const touch = e.touches[0];
+                offsetX = touch.clientX - draggable.offsetLeft;
+                offsetY = touch.clientY - draggable.offsetTop;
+                draggable.style.position = 'absolute';
+            }
+        });
+
+        document.addEventListener('touchmove', (e) => {
+            if (isDragging && e.touches.length === 1) {
+                const touch = e.touches[0];
+                draggable.style.left = `${touch.clientX - offsetX}px`;
+                draggable.style.top = `${touch.clientY - offsetY}px`;
+            }
+        });
+
+        document.addEventListener('touchend', () => {
+            isDragging = false;
+        });
+
+        // Prevent context menu on right click
+        document.addEventListener('contextmenu', (e) => e.preventDefault());
     </script>
 
 </body>

@@ -131,5 +131,15 @@ class CutisController extends Controller
     return redirect()->back()->with('success', 'Cuti approved successfully.');
 }
 
+public function reject($id)
+{
+    $cuti = Cutis::findOrFail($id);
+    $cuti->status_cuti = 2; // Assuming 2 indicates rejected
+    $cuti->save();
+
+    return redirect()->back()->with('success', 'Pengajuan Cuti Di Tolak.');
+
+
+}
 
 }

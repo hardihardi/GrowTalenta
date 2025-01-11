@@ -7,7 +7,7 @@
 
     <title>Human Resource</title>
     <link rel="shortcut icon"
-        href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQS06Lv3qkW0IXtMqy_xll0d87wjMNS1vqx3Q&s"
+        href="https://https://i.pinimg.com/736x/f9/94/e5/f994e55f17392b8d6e204be294ffc4dc.jpg"
         type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
@@ -221,7 +221,7 @@
     </div>
 
     <footer class="footer text-center mt-5">
-        <p>© 2024 PT. Trirama - All Rights Reserved</p>
+        <p>© 2024 ITI - All Rights Reserved</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
