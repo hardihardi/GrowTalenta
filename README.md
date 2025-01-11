@@ -1,3 +1,5 @@
+<img src="https://iili.io/2ryrDep.md.png" alt="Logo" class="app-brand-logo" style="max-width: 100; height: auto;">
+
 # GTMS - Grow Talenta Management System
 
 Grow Talenta Management System (GTMS) adalah sebuah sistem untuk manajemen karyawan yang dirancang untuk memudahkan administrasi perusahaan dalam mengelola data karyawan, penggajian, cuti, absensi, dan rekrutmen.
