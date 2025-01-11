@@ -44,8 +44,8 @@ Berikut adalah fitur-fitur yang tersedia dalam GTMS:
 Ikuti langkah-langkah berikut untuk menginstal project HRMS:
 
 1. Clone atau download source code
-    - Para terminal, clone repo `git@github.com:hardihardi/Human-Resource.git`
-    - atau `git clone https://github.com/hardihardi/Human-Resource.git`
+    - Para terminal, clone repo `git@github.com:hardihardi/GrowTalenta.git`
+    - atau `git clone https://github.com/hardihardi/GrowTalenta.git`
     - Jika tidak menggunakan Git, silakan **Download Zip** dan *extract* pada direktori web server (misal: laragon/www atau xampp/htdocs)
 2. `cd GrowTalenta`
 3. `composer install`
